@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>express knex</title>
+</head>
+<body>
+<div style="height: 400px;width: 100%">
+    <label>用户名：</label>
+    <input name="user_name" type="text" id="user_name">
+    <label>密码：</label>
+    <input name="password" type="password" id="password">
+
+    <button style="height: 40px" onclick="postUser()">提交</button>
+</div>
+</body>
+
+<script>
+  function postUser() {
+    var user_name = document.querySelector('#user_name').value;
+    var password = document.querySelector('#password').value;
+    var param = {
+      user_name: user_name,
+      password: password
+    }
+    console.log(user_name, password);
+    fetch('/users/save', {
+      method: 'post',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(param)
+    }).then(function (data) {
+      console.log(data);
+      if (data.status == 200) {
+        return data.json();
+      }
+    }).then(function (json) {
+      console.log(json);
+    })
+
+  }
+</script>
+</html>
