@@ -4,7 +4,7 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary();
     table.string('name');
     table.string('password');
-    table.string('account');
+    table.string('account').unique();
     table.timestamp('creat_at').default(knex.fn.now());
     table.timestamp('update_at').default(knex.fn.now());
   });
@@ -15,8 +15,8 @@ exports.up = function (knex, Promise) {
     table.enu('type', [1, 2, 3]);
     table.string('create_by');
     table.json('content');
-    table.integer('min_score').default(999);
-    table.integer('max_score').default(0);
+    table.integer('min_score').default(0);
+    table.integer('max_score').default(999);
     table.timestamp('creat_at').default(knex.fn.now());
     table.timestamp('update_at').default(knex.fn.now());
   });
