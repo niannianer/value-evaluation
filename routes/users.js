@@ -18,7 +18,7 @@ router.post('/login', (req, res, next) => {
             if (data && data.length) {
               req.session = req.session || {};
               req.session.user_id = data[0].id;
-              res.send({
+             return res.send({
                 code: 200,
                 msg: 'ok',
                 data: data[0]
