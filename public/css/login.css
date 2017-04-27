@@ -1,0 +1,35 @@
+.login {
+    padding: 20px 15px;
+}
+
+.login > div {
+    position: relative;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+
+}
+
+.label {
+    width: 80px;
+
+}
+
+.label label {
+    display: inline-block;
+    width: 100%;
+    line-height: 28px;
+    text-align: left;
+}
+
+.input {
+
+}
+
+.input > input {
+    height: 28px;
+    width: 100%;
+}
+
+.btn-login {
+    width: 200px;
+}

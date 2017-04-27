@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/css/common/flex.css">
+    <link rel="stylesheet" href="/css/common/style.css">
+    <link rel="stylesheet" href="/css/login.css?v=<%=version%>">
+</head>
+<body>
+<div class="warp">
+    <div class="login" id="login">
+        <div flex>
+            <div class="label" flex-box="0">
+                <label>用户名：</label>
+            </div>
+            <div class="input" flex-box="1">
+                <input name="user_name" type="text" id="user_name" v-model="account">
+            </div>
+        </div>
+
+        <div flex>
+            <div class="label" flex-box="0">
+                <label>密码：</label>
+            </div>
+            <div class="input" flex-box="1">
+                <input name="password" type="password" id="password" v-model="password">
+            </div>
+        </div>
+        <div flex="main:center">
+            <button class="btn-login btn-primary" @click="doLogin()">登录</button>
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+<script type="text/javascript" src="/js/common/vue.js"></script>
+<script type="text/javascript" src="/js/common/promise.min.js"></script>
+<script type="text/javascript" src="/js/common/fetch.js"></script>
+<script type="text/javascript" src="/js/common/api.js"></script>
+<script type="text/javascript" src="/js/login.js?v=<%=version%>"></script>
+</html>

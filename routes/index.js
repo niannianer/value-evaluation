@@ -1,13 +1,18 @@
-var express = require('express');
-var router = express.Router();
-var path =require('path');
+const express = require('express');
+const router = express.Router();
+const path = require('path');
+const {version} = require('../config');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
 
-  console.log('req------>',path.resolve('./views/index.ejs'));
-  //return res.sendFile(path.resolve('./views/index.ejs'));
-  res.render('index');
+  console.log('req------>', path.resolve('./views/index.html'));
+  //return res.sendFile(path.resolve('./views/index.html'));
+  res.render('index', {version});
 });
+router.get('/login', (req, res, next) => {
+  res.render('login', {version});
+});
+
 
 module.exports = router;
