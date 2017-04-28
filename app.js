@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 var ejs = require('ejs');
 
 
@@ -22,7 +23,12 @@ app.use(logger('dev'));
 app.use(session({
   secret: 'abcdefg',
   name: 'mfSystem',
-  cookie: {maxAge: 60 * 60 * 1000},
+  store: new RedisStore({
+    host: "127.0.0.1",
+    port: 6379,
+    db: "0"
+  }),
+  cookie: {maxAge: 12 * 30 * 60 * 60 * 1000},
   resave: true,
   saveUninitialized: true
 }));
