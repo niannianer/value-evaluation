@@ -1,18 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const path = require('path');
-const {version} = require('../config');
-
-/* GET home page. */
-router.get('/', function (req, res, next) {
-
-  console.log('req------>', path.resolve('./views/index.html'));
-  //return res.sendFile(path.resolve('./views/index.html'));
-  res.render('index', {version});
-});
-router.get('/login', (req, res, next) => {
-  res.render('login', {version});
-});
+const page = require('./page');
+const user = require('./users');
+const question = require('./question');
+const questionnaire = require('./questionnaire');
+const answer = require('./answer');
 
 
-module.exports = router;
+const init = (app) => {
+
+  app.use('/api/user', user);
+  app.use('/api/question', question);
+  app.use('/api/questionnaire', questionnaire);
+  app.use('/api/answer', answer);
+  app.use('/', page);
+
+};
+module.exports = {
+  init
+};

@@ -16,7 +16,7 @@
     return str.join('&');
   };
   api.get = function (path, params) {
-    var url = path;
+    var url = '/api' + path;
     if (params) {
       url = url + '?' + $query(params);
     }
@@ -37,7 +37,7 @@
     });
   };
   api.post = function (path, data) {
-    var url = path;
+    var url = '/api' + path;
     return fetch(url, {
       method: 'post',
       credentials: 'same-origin',

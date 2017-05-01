@@ -4,7 +4,7 @@
 
 const knex = require('./knexAction');
 const initData = require('./initData');
-const {User, MainTitle, Question, Questionnaire} = initData;
+const {User, MainTitle, SubTitle, Question, Questionnaire} = initData;
 [].map.call(Question, (el) => {
   el.content = JSON.stringify(el.content);
 });
@@ -31,7 +31,15 @@ knex('main_title').truncate()
         .catch(err => {
           console.log(err)
         });
-
+knex('sub_title').truncate()
+        .then(() => {
+          return knex.insert(SubTitle).into('sub_title');
+        })
+        .then(() => {
+        })
+        .catch(err => {
+          console.log(err);
+        })
 
 knex('question').truncate()
         .then(() => {

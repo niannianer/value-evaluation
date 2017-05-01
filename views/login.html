@@ -5,6 +5,8 @@
     <title>用户登录</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+
+    <link rel="shortcut icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/common/flex.css">
     <link rel="stylesheet" href="/css/common/style.css">
     <link rel="stylesheet" href="/css/login.css?v=<%=version%>">
@@ -17,7 +19,7 @@
                 <label>用户名：</label>
             </div>
             <div class="input" flex-box="1">
-                <input name="user_name" type="text" id="user_name" v-model="account">
+                <input name="account" type="text"  v-model="account">
             </div>
         </div>
 
@@ -26,7 +28,7 @@
                 <label>密码：</label>
             </div>
             <div class="input" flex-box="1">
-                <input name="password" type="password" id="password" v-model="password">
+                <input name="password" type="password"  v-model="password">
             </div>
         </div>
         <div flex="main:center">

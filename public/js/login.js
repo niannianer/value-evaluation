@@ -20,9 +20,14 @@ var vm = new Vue({
         account: this.account,
         password: this.password
       };
-      $api.post('/users/login', data)
+      $api.post('/user/login', data)
               .then(function (res) {
                 console.log(res);
+                if (res.code == 200) {
+                  if (res.redirectUrl) {
+                    location.replace(res.redirectUrl);
+                  }
+                }
               })
 
     }

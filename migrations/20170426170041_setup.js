@@ -15,7 +15,7 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary();
     /*1 单选 ，2多选，3，简答*/
     table.enu('type', [1, 2, 3]).default(1);
-    table.string('create_by').default('zhuanghongyu');
+    table.integer('create_by').default(1); //庄洪宇
     table.string('title').notNull();
     table.json('content').notNull();
     table.boolean('is_close').default(false);
@@ -29,7 +29,7 @@ exports.up = function (knex, Promise) {
   // questionnaire
   const p3 = knex.schema.createTable('questionnaire', function (table) {
     table.increments('id').primary();
-    table.string('create_by').default('zhuanghongyu');
+    table.integer('create_by').default(1);
     // 1 ,测评问卷 ，99 普通问卷
     table.enu('type', [1, 2, 3, 4, 99]).default(1);
     // 问卷描述
@@ -42,10 +42,13 @@ exports.up = function (knex, Promise) {
   //answer
   const p4 = knex.schema.createTable('answer', function (table) {
     table.increments('id').primary();
-    table.string('answer_by').notNull();
-    table.string('answer_to').notNull();
+
+    //答题人
+    table.integer('answer_by').notNull();
+    //被测人
+    table.integer('answer_to').notNull();
     // 自评 1 ，测评上级 2  测评平级，3，测评下级,4 ,普通问卷 99
-    table.enu('type', [1, 2, 3, 4, 99]).default(1);
+    table.enu('type', [1, 2, 3, 4, 99]).notNull();
     //问卷id
     table.integer('questionnaire_id').notNull();
     // 问卷答案
@@ -56,7 +59,6 @@ exports.up = function (knex, Promise) {
 // main title
   const p5 = knex.schema.createTable('main_title', function (table) {
     table.increments('id').primary();
-    table.string('create_by').notNull();
     table.text('content').notNull();
     table.timestamp('creat_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
@@ -66,7 +68,6 @@ exports.up = function (knex, Promise) {
   const p6 = knex.schema.createTable('sub_title', function (table) {
     table.increments('id').primary();
     table.integer('parent_id').notNull();
-    table.string('create_by').notNull();
     table.text('content').notNull();
     table.timestamp('creat_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
@@ -76,7 +77,8 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary();
     // 答案id ，针对某条问卷答案的评价
     table.integer('answer_id').notNull();
-    table.string('create_by').notNull();
+    //评价者
+    table.integer('create_by').notNull();
     table.text('content').notNull();
     table.timestamp('creat_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
