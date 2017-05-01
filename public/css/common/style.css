@@ -15,7 +15,6 @@ body {
     right: 0;
     top: 0;
     bottom: 0;
-
     color: #333;
     -webkit-touch-callout: none;
 }
@@ -24,6 +23,7 @@ input, textarea {
     -webkit-appearance: none;
     border: 1px solid #eee;
     outline: none;
+    resize: none;
     padding: 0 10px;
 
 }
