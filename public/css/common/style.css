@@ -59,3 +59,50 @@ button {
     margin: 0 auto;
     max-width: 800px;
 }
+
+.bg-primary {
+    background-color: #00beff;
+}
+
+.color-primary {
+    color: #00beff;
+}
+
+.color-text {
+    color: #333;
+}
+
+.color-second {
+    color: #666;
+}
+
+.color-gray {
+    color: #999;
+}
+
+.border-default {
+    border: 1px solid #ddd;
+}
+
+.header {
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    background-color: #00beff;
+    color: #fff;
+    text-align: center;
+}
+
+.header h3 {
+    text-align: center;
+    width: 100%;
+}
+
+.footer {
+    position: relative;
+    height: 44px;
+    line-height: 44px;
+    background-color: #00beff;
+    color: #fff;
+    text-align: center;
+}

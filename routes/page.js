@@ -76,7 +76,7 @@ router.get('/questionnaire/:account/:sign', (req, res, next) => {
           });
   Promise.all([p1, p2])
           .then(() => {
-            res.render('questionnaire', {result});
+            res.render('questionnaire', {result,version});
           })
           .catch(err => {
             res.render('error', {msg: err.message||'not found'});

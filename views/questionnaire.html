@@ -8,18 +8,87 @@
     <link rel="shortcut icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/common/flex.css">
     <link rel="stylesheet" href="/css/common/style.css">
+    <link rel="stylesheet" href="/css/questionnaire.css?v=<%=version%>">
 </head>
 <body>
-<div class="warp">
-    <div> 价值观 测评问卷</div>
-</div>
+<div class="warp" flex="dir:top" id="questionnaire">
+    <div class="header" flex-box="0">
+        <h3>价值观测评问卷</h3>
+    </div>
+    <div flex-box="1" class="questionnaire">
+        <div class="description">
+            您好，感谢您参加本次调查。<br>
+            本次调查为匿名，被评者本人将不会通过评测结果获知您到个人信息。请根据被评测人到实际达标状况进行评分。<br>
+            若在评测过程中有任何不清楚之处，可向庄洪宇咨询。
+        </div>
+        <div class="qu-item">
+            <div class="qu-title">
+                1、您是被评人的：
 
+            </div>
+            <div class="qu-content border-default">
+                <div class="content-item" flex>
+                    <span class="cicle active" flex-box="0"></span>
+                    <div class="content-info" flex-box="1">本人（自评）</div>
+                </div>
+                <div class="content-item" flex>
+                    <span class="cicle" flex-box="0"></span>
+                    <div class="content-info" flex-box="1">上级</div>
+                </div>
+                <div class="content-item" flex>
+                    <span class="cicle" flex-box="0"></span>
+                    <div class="content-info" flex-box="1">同级</div>
+                </div>
+                <div class="content-item" flex>
+                    <span class="cicle" flex-box="0"></span>
+                    <div class="content-info" flex-box="1">下属</div>
+                </div>
+            </div>
+        </div>
+
+        <!--v-for -->
+        <div v-for="(question,index) in question_list" :key="index" class="qu-item">
+
+            <div class="qu-title">
+                {{index+2}}、{{question.title}}：
+            </div>
+            <div class="hint-info">
+                你认为被评测热人在此条价值观上、可以做到几分
+
+            </div>
+            <div class="qu-sub-title">
+                <div v-for="(content,index_) in question.content " :key="index_">
+                    {{content}}  <b>({{index_+1}}分)</b>
+                </div>
+            </div>
+
+            <div class="qu-content border-default">
+                <div class="content-item" flex v-for="n in 10">
+                    <span class="cicle" flex-box="0"></span>
+                    <div class="content-info" flex-box="1">{{(n)*0.5}}分</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="footer" flex-box="0">
+        <button class="btn-primary btn-submit" disabled>提交</button>
+    </div>
+
+</div>
 
 
 <script>
   var result = '<%- JSON.stringify(result) %>';
-  console.log(JSON.parse(result));
+
+  result = JSON.parse(result);
 
 </script>
+
+<script type="text/javascript" src="/js/common/vue.js"></script>
+<script type="text/javascript" src="/js/common/promise.min.js"></script>
+<script type="text/javascript" src="/js/common/fetch.js"></script>
+<script type="text/javascript" src="/js/common/api.js"></script>
+<script type="text/javascript" src="/js/questionnaire.js?v=<%=version%>"></script>
 </body>
 </html>
