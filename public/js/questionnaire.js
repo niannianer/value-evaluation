@@ -8,7 +8,7 @@ var vm = new Vue({
     return {
       question_list: result.question_list,
       btn_submit: false,
-      user_name:result.user.name,
+      user_name: result.user.name,
       answer: {
         questionnaire_id: result.questionnaire.id,
         type: ''
@@ -70,6 +70,8 @@ var vm = new Vue({
               .then(function (data) {
                 if (data.code != 200) {
                   alert('提交失败，稍后再试');
+                } else {
+                  location.href = '/questionnaire-result';
                 }
 
               })

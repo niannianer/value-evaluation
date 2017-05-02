@@ -33,6 +33,7 @@ router.post('/evaluation', (req, res, next) => {
           .where({answer_to, answer_by})
           .then(data => {
             if (data && data.length) {
+              insertAnswer.update_at = knex.fn.now();
               return knex('answer')
                       .where({answer_to, answer_by})
                       .update(insertAnswer)

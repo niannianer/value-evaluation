@@ -76,11 +76,15 @@ router.get('/questionnaire/:account/:sign', (req, res, next) => {
           });
   Promise.all([p1, p2])
           .then(() => {
-            res.render('questionnaire', {result,version});
+            res.render('questionnaire', {result, version});
           })
           .catch(err => {
-            res.render('error', {msg: err.message||'not found'});
+            res.render('error', {msg: err.message || 'not found'});
           });
 
-})
+});
+router.get('/questionnaire-result', (req, res, next) => {
+  res.render('questionnaire-result', {version});
+
+});
 module.exports = router;
