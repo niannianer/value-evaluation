@@ -4,7 +4,7 @@ const knex = require('../knexAction');
 
 // user login
 router.post('/login', (req, res, next) => {
-  var param = req.body;
+  let param = req.body;
   if (!param.account || !param.password) {
     return res.send({
       code: -1,

@@ -6,7 +6,11 @@ router.use((req, res, next) => {
   if (sesstion && sesstion.user) {
     next();
   } else {
-    res.render('login');
+    res.status(401)
+    res.send({
+      code: 401,
+      msg: 'need login'
+    });
   }
 
 });

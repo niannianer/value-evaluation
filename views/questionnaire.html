@@ -27,20 +27,20 @@
 
             </div>
             <div class="qu-content border-default">
-                <div class="content-item" flex>
-                    <span class="cicle active" flex-box="0"></span>
+                <div class="content-item" flex @click.stop="setType(1)">
+                    <span class="cicle" flex-box="0" :class="{'active':answer.type==1}"></span>
                     <div class="content-info" flex-box="1">本人（自评）</div>
                 </div>
-                <div class="content-item" flex>
-                    <span class="cicle" flex-box="0"></span>
+                <div class="content-item" flex @click.stop="setType(2)">
+                    <span class="cicle" flex-box="0" :class="{'active':answer.type==2}"></span>
                     <div class="content-info" flex-box="1">上级</div>
                 </div>
-                <div class="content-item" flex>
-                    <span class="cicle" flex-box="0"></span>
+                <div class="content-item" flex @click.stop="setType(3)">
+                    <span class="cicle" flex-box="0" :class="{'active':answer.type==3}"></span>
                     <div class="content-info" flex-box="1">同级</div>
                 </div>
-                <div class="content-item" flex>
-                    <span class="cicle" flex-box="0"></span>
+                <div class="content-item" flex @click.stop="setType(4)">
+                    <span class="cicle" flex-box="0" :class="{'active':answer.type==4}"></span>
                     <div class="content-info" flex-box="1">下属</div>
                 </div>
             </div>
@@ -58,21 +58,33 @@
             </div>
             <div class="qu-sub-title">
                 <div v-for="(content,index_) in question.content " :key="index_">
-                    {{content}}  <b>({{index_+1}}分)</b>
+                    {{content}} <b>({{index_+1}}分)</b>
                 </div>
             </div>
 
             <div class="qu-content border-default">
-                <div class="content-item" flex v-for="n in 10">
-                    <span class="cicle" flex-box="0"></span>
+                <div class="content-item" flex v-for="n in 10" @click.stop="setItemScore(question,n*0.5)">
+                    <span class="cicle" flex-box="0" :class="{'active':question.score==n*0.5}"></span>
                     <div class="content-info" flex-box="1">{{(n)*0.5}}分</div>
                 </div>
+            </div>
+
+            <div class="reoson"
+                 v-if="question.score&&(question.score>question.high_line||question.score<question.low_line)">
+                <div class="reason-title">
+                    请简单说明你的评分依据（案例）
+                </div>
+                <textarea class="reason-text"
+                          @input="checkSubmit()"
+                          v-model="question.reason"></textarea>
             </div>
         </div>
 
     </div>
     <div class="footer" flex-box="0">
-        <button class="btn-primary btn-submit" disabled>提交</button>
+        <button class="btn-primary btn-submit"
+                @click.stop="submitAnswer()"
+                :disabled="!btn_submit">提交</button>
     </div>
 
 </div>
