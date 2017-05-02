@@ -8,6 +8,7 @@ var vm = new Vue({
     return {
       question_list: result.question_list,
       btn_submit: false,
+      user_name:result.user.name,
       answer: {
         questionnaire_id: result.questionnaire.id,
         type: ''
