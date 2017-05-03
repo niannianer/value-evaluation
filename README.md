@@ -24,4 +24,8 @@ node init.js
 ``` bash
 pm2 start run.config.js --only www
 ```
-
+# production
+```
+npm run init_production
+pm2 start run.config.js --only www --env production
+```

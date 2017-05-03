@@ -19,9 +19,10 @@ module.exports = {
   staging: {
     client: 'mysql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password',
+      host:'127.0.0.1',
+      user:'root',
+      password:'',
+      database:'mf_stage',
       charset:'utf8'
     },
     pool: {
@@ -31,11 +32,12 @@ module.exports = {
   },
 
   production: {
-    client: 'postgresql',
+    client: 'mysql',
     connection: {
-      database: 'my_db',
-      user:     'username',
-      password: 'password',
+      host:'127.0.0.1',
+      user:'root',
+      password:'',
+      database:'mf_production',
       charset:'utf8'
     },
     pool: {
