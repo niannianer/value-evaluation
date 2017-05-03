@@ -78,14 +78,14 @@ var vm = new Vue({
       $api.post('/answer/evaluation', answer)
               .then(function (data) {
                 if (data.code != 200) {
-                  alert('提交失败，稍后再试');
+                  console.log('提交失败，稍后再试');
                 } else {
                   location.href = '/questionnaire-result';
                 }
 
               })
               .catch(function () {
-                alert('提交失败，稍后再试');
+                console.log('提交失败，稍后再试');
               })
 
     }

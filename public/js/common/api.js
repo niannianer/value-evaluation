@@ -32,6 +32,9 @@
       if (response.status == 200) {
         return response.json()
       }
+      if (response.status == 401) {
+        return location.replace('/login');
+      }
       return {};
     }).catch(err => {
       console.error('error,--->', err);
@@ -51,6 +54,9 @@
     }).then(response => {
       if (response.status == 200) {
         return response.json()
+      }
+      if (response.status == 401) {
+        return location.replace('/login');
       }
       return {};
     }).catch(err => {
