@@ -33,6 +33,7 @@
         return response.json()
       }
       if (response.status == 401) {
+        sessionStorage.setItem('redirectUrl', encodeURIComponent(location.href));
         return location.replace('/login');
       }
       return {};
@@ -56,6 +57,7 @@
         return response.json()
       }
       if (response.status == 401) {
+        sessionStorage.setItem('redirectUrl', encodeURIComponent(location.href));
         return location.replace('/login');
       }
       return {};

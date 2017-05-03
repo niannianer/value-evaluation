@@ -26,6 +26,8 @@ var vm = new Vue({
                 if (res.code == 200) {
                   if (res.redirectUrl) {
                     location.replace(res.redirectUrl);
+                  } else if (sessionStorage.getItem('redirectUrl')) {
+                    location.replace(decodeURIComponent(sessionStorage.getItem('redirectUrl')));
                   }
                 }
               })
