@@ -7,7 +7,7 @@ exports.up = function (knex, Promise) {
     table.string('name');
     table.string('password').default('123456');
     table.string('account').unique();
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
   //question
@@ -23,7 +23,7 @@ exports.up = function (knex, Promise) {
     table.integer('max_score').default(5);
     table.integer('low_line').default(3);
     table.integer('high_line').default(4);
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
   // questionnaire
@@ -36,7 +36,7 @@ exports.up = function (knex, Promise) {
     table.text('description');
     //题目列表
     table.json('question_ids').notNull();
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
   //answer
@@ -53,14 +53,14 @@ exports.up = function (knex, Promise) {
     table.integer('questionnaire_id').notNull();
     // 问卷答案
     table.json('result').notNull();
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
 // main title
   const p5 = knex.schema.createTable('main_title', function (table) {
     table.increments('id').primary();
     table.text('content').notNull();
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
 
@@ -69,7 +69,7 @@ exports.up = function (knex, Promise) {
     table.increments('id').primary();
     table.integer('parent_id').notNull();
     table.text('content').notNull();
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
   //evalution
@@ -80,7 +80,7 @@ exports.up = function (knex, Promise) {
     //评价者
     table.integer('create_by').notNull();
     table.text('content').notNull();
-    table.timestamp('creat_at').default(knex.fn.now());
+    table.timestamp('create_at').default(knex.fn.now());
     table.timestamp('update_at').nullable();
   });
   return Promise.all([p1, p2, p3, p4, p5, p6, p7]);
