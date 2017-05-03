@@ -19,7 +19,16 @@ var vm = new Vue({
 
   },
   created: function () {
-    console.log(this.$data);
+    var answer_to = result.user.id;
+    var that = this;
+    $api.get('/questionnaire/' + answer_to)
+            .then(function (data) {
+              if (data.code == 200) {
+                that.question_list = data.data.result;
+                that.answer.type = data.data.type;
+                that.checkSubmit();
+              }
+            })
   },
   methods: {
     setType: function (type) {

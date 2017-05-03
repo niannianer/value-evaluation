@@ -16,9 +16,10 @@
     return str.join('&');
   };
   api.get = function (path, params) {
-    var url = '/api' + path;
+    var t = new Date().getTime();
+    var url = '/api' + path + '?t=' + t;
     if (params) {
-      url = url + '?' + $query(params);
+      url = url + '&' + $query(params);
     }
     return fetch(url, {
       method: 'get',
@@ -37,7 +38,8 @@
     });
   };
   api.post = function (path, data) {
-    var url = '/api' + path;
+    var t = new Date().getTime();
+    var url = '/api' + path + '?t=' + t;
     return fetch(url, {
       method: 'post',
       credentials: 'same-origin',
