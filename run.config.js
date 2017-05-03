@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name        : "www",
+    name        : "dev",
     script      : "bin/www",
     watch       : true,
     env: {
@@ -10,5 +10,12 @@ module.exports = {
       "NODE_ENV": "production"
     },
     ignore_watch:['node_modules','views','public']
-  }]
-}
+  },
+    {
+      name        : "production",
+      script      : "bin/www",
+      env: {
+        "NODE_ENV": "production",
+      }
+    }]
+};

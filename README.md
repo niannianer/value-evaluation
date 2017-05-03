@@ -22,10 +22,10 @@ node init.js
 ```
 # when development
 ``` bash
-pm2 start run.config.js --only www
+pm2 start run.config.js --only dev
 ```
 # production
 ```
 npm run init_production
-pm2 start run.config.js --only www --env production
+pm2 start run.config.js --only production 
 ```

@@ -1,7 +1,7 @@
 /**
  * Created by hekk on 2017/4/26.
  */
-
+const Promise = require('bluebird');
 const knex = require('./knexAction');
 const initData = require('./initData');
 const {User, MainTitle, SubTitle, Question, Questionnaire} = initData;
@@ -11,52 +11,45 @@ const {User, MainTitle, SubTitle, Question, Questionnaire} = initData;
 [].map.call(Questionnaire, (el) => {
   el.question_ids = JSON.stringify(el.question_ids);
 });
-knex('user').truncate()
+const p1 = knex('user').truncate()
         .then(() => {
           return knex.insert(User).into('user')
         })
-        .then((data) => {
-          console.log(data)
-        })
-        .catch(err => {
-          console.log(err)
-        });
 
-knex('main_title').truncate()
+
+const p2 = knex('main_title').truncate()
         .then(() => {
           return knex.insert(MainTitle).into('main_title');
         })
-        .then(() => {
-        })
-        .catch(err => {
-          console.log(err)
-        });
-knex('sub_title').truncate()
+
+
+const p3 = knex('sub_title').truncate()
         .then(() => {
           return knex.insert(SubTitle).into('sub_title');
         })
-        .then(() => {
-        })
-        .catch(err => {
-          console.log(err);
-        })
 
-knex('question').truncate()
+
+const p4 = knex('question').truncate()
         .then(() => {
           return knex.insert(Question).into('question')
         })
-        .catch(err => {
-          console.log(err)
-        });
-knex('questionnaire').truncate()
+
+const p5 = knex('questionnaire').truncate()
         .then(() => {
           return knex.insert(Questionnaire).into('questionnaire')
         })
+
+
+Promise.all([p1, p2, p3, p4, p5])
+        .then(() => {
+          console.log('ok');
+          process.exit(0);
+          return 0;
+        })
         .catch(err => {
-          console.log(err)
-        });
-
-
+          console.log('--->error', err);
+          process.exit(0)
+        })
 
 
 
