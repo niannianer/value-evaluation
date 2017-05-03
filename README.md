@@ -15,17 +15,17 @@ npm install -g pm2
 ``` bash
 npm install
 ```
-# init data
-```bash
-knex migrate:latest
-node init.js
-```
+
+
 # when development
 ``` bash
+knex migrate:latest
+node init.js
 pm2 start run.config.js --only dev
 ```
 # production
 ```
+knex migrate:latest --env production
 npm run init_production
 pm2 start run.config.js --only production 
 ```
