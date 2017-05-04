@@ -15,7 +15,6 @@ var vm = new Vue({
   },
   methods: {
     doLogin: function () {
-      console.log(this.$data);
       var data = {
         account: this.account,
         password: this.password
@@ -28,6 +27,11 @@ var vm = new Vue({
                     location.replace(res.redirectUrl);
                   } else if (sessionStorage.getItem('redirectUrl')) {
                     location.replace(decodeURIComponent(sessionStorage.getItem('redirectUrl')));
+                  } else {
+                    var data = res.data;
+                    if (data.type == 2) {
+                      location.href = '/questionnaire-url';
+                    }
                   }
                 }
               })

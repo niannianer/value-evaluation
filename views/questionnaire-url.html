@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷答案(全部)</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/common/flex.css">
+    <link rel="stylesheet" href="/css/common/style.css">
+    <link rel="stylesheet" href="/css/answer-account.css?v=<%=version%>">
+</head>
+<body>
+<div class="warp" flex="dir:top" id="questionnaire-url">
+    <div class="header" flex-box="0">
+        <h3>问卷链接(全部)</h3>
+    </div>
+    <div flex-box="1" class="answer-account">
+        <div class="description">
+            以下为测评人对应的问卷链接<br>
+        </div>
+        <div class="url-list">
+            <div class="list-item" flex="">
+                <div class="name" flex-box="0">姓名</div>
+                <div class="url" flex-box="1">链接</div>
+                <div class="action" flex-box="0">操作</div>
+            </div>
+            <div class="list-item" flex="" v-for="(item,index) in list">
+                <input type="hidden" :id="('l'+index)" v-model="item.url">
+                <div class="name" flex-box="0">{{item.name}}</div>
+                <div class="url" flex-box="1">{{item.url}}</div>
+                <div class="action copy" flex-box="0" :data-clipboard-text="item.url">复制</div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+  var result = '<%- JSON.stringify(data) %>';
+
+  result = JSON.parse(result);
+
+
+</script>
+
+<script type="text/javascript" src="/js/common/vue.js"></script>
+<script type="text/javascript" src="/js/common/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/questionnaire-url.js?v=<%=version%>"></script>
+</body>
+</html>

@@ -41,3 +41,25 @@
 .score.low{
     color: #ff6500;
 }
+.url-list{
+    position: relative;
+    margin-top: 15px;
+    background-color: #fff;
+    padding: 10px;
+
+}
+.url-list .list-item{
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+.url-list .list-item:last-child{
+    border-bottom: none;
+}
+.url-list .name{
+    width: 80px;
+}
+.url-list .action{
+    text-align: right;
+    width: 60px;
+    color: #00beff;
+}

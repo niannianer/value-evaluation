@@ -3,7 +3,7 @@ const router = express.Router();
 const path = require('path');
 const Promise = require('bluebird');
 const knex = require('../knexAction');
-const {version, checkSign} = require('../config');
+const {version, checkSign, setSign} = require('../config');
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -34,7 +34,7 @@ router.get('/questionnaire/:account/:sign', (req, res, next) => {
   let {account, sign} = req.params;
   /*sign is error*/
   if (!checkSign(account, sign)) {
-    return res.render('error',{msg:'sgin is error'});
+    return res.render('error', {msg: 'sgin is error'});
 
   }
   let result = {};
@@ -97,11 +97,11 @@ router.get('/answer-all', (req, res, next) => {
     return res.render('error', {msg: 'permission deny'});
   }
   knex.distinct('user.id')
-          .select('user.name','user.account')
+          .select('user.name', 'user.account')
           .from('user')
           .innerJoin('answer', 'answer.answer_to', 'user.id')
           .then(data => {
-            res.render('answer-all', {result: data,version});
+            res.render('answer-all', {result: data, version});
           })
           .catch(err => {
             return res.render('error', {msg: err.message || 'sql error'});
@@ -141,6 +141,28 @@ router.get('/answer/:account', (req, res, next) => {
             return res.render('error', {msg: err.message || 'sql error'});
           })
 
+
+});
+// get all questionnaire url
+router.get('/questionnaire-url', (req, res, next) => {
+  let sesstion = req.session;
+  let {user} = sesstion;
+  //  permission deny
+  if (user.type != 2) {
+    return res.render('error', {msg: 'permission deny'});
+  }
+  knex('user')
+          .select('id', 'name', 'account', 'type')
+          .then(data => {
+            data.map(el => {
+              el.sign = setSign(el.account);
+
+            });
+            res.render('questionnaire-url', {data, version});
+          })
+          .catch(err => {
+            res.render('error', {msg: err.message || 'sql error'})
+          });
 
 });
 module.exports = router;
