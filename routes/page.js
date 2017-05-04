@@ -88,6 +88,26 @@ router.get('/questionnaire-result', (req, res, next) => {
   res.render('questionnaire-result', {version});
 
 });
+// get all answer
+router.get('/answer-all', (req, res, next) => {
+  let sesstion = req.session;
+  let {user} = sesstion;
+//  permission deny
+  if (user.type != 2) {
+    return res.render('error', {msg: 'permission deny'});
+  }
+  knex.distinct('user.id')
+          .select('user.name','user.account')
+          .from('user')
+          .innerJoin('answer', 'answer.answer_to', 'user.id')
+          .then(data => {
+            res.render('answer-all', {result: data,version});
+          })
+          .catch(err => {
+            return res.render('error', {msg: err.message || 'sql error'});
+          });
+
+});
 
 // get answer by account
 router.get('/answer/:account', (req, res, next) => {
@@ -105,7 +125,7 @@ router.get('/answer/:account', (req, res, next) => {
           .then(data => {
             result.user = data[0];
             let user_id = data[0].id;
-            return knex.select('answer.*','user.name')
+            return knex.select('answer.*', 'user.name')
                     .from('answer')
                     .innerJoin('user', 'answer.answer_by', 'user.id')
                     .where('answer.answer_to', user_id)

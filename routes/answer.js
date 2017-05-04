@@ -15,6 +15,7 @@ router.use((req, res, next) => {
   }
 
 });
+// evaluation
 router.post('/evaluation', (req, res, next) => {
   let param = req.body;
   let {answer_to, result, questionnaire_id, type} = param;
@@ -60,5 +61,38 @@ router.post('/evaluation', (req, res, next) => {
           });
 
 
+});
+// get answer by user id
+router.get('/get/:id', (req, res, next) => {
+  let {id} = req.params;
+  let sesstion = req.session;
+  let {user} = sesstion;
+//  permission deny
+  if (user.type != 2) {
+    return res.send({
+      code: 403,
+      msg: 'permission deny'
+    });
+  }
+  return knex.select('answer.*', 'user.name')
+          .from('answer')
+          .innerJoin('user', 'answer.answer_by', 'user.id')
+          .where('answer.answer_to', id)
+          .then(data => {
+            data.map(el => {
+              el.result = JSON.parse(el.result);
+            });
+            res.send({
+              code: 200,
+              msg: 'ok',
+              data
+            })
+          })
+          .catch(err => {
+            return res.send({
+              code: -1,
+              msg: err.message || 'sql error'
+            });
+          })
 });
 module.exports = router;

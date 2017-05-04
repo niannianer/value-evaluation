@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷答案(全部)</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/common/flex.css">
+    <link rel="stylesheet" href="/css/common/style.css">
+    <link rel="stylesheet" href="/css/answer-account.css?v=<%=version%>">
+</head>
+<body>
+<div class="warp" flex="dir:top" id="answer-all">
+    <div class="header" flex-box="0">
+        <h3>问卷答案(全部)</h3>
+    </div>
+    <div flex-box="1" class="answer-account">
+        <div class="description">
+            以下为测评人对被测评人价值观的打分以及评价<br>
+        </div>
+        <div class="select" flex="">
+            <label flex-box="0" class="label">请选择：</label>
+            <select v-model="selected" class="selected" flex-box="1" @change="changeUser()">
+                <option v-for="user in users" :value="user.id">
+                    {{user.name}}
+                </option>
+            </select>
+        </div>
+
+        <div class="answer-list" v-for="(answer,index) in answer_list" :key="index">
+            <div class="list-title" flex="main:justify">
+                <div>测评人：{{answer.name}}</div>
+                <div>测评关系：{{answer.type|typeGrade}}</div>
+            </div>
+            <div class="list-content" v-for="(result,index_) in answer.result" :key="index_">
+                <div class="title">{{result.title}}</div>
+                <div>得分：
+                    <span class="score"
+                          :class="{'high':result.score>result.high_line,'low':result.score<result.low_line}">{{result.score}}</span>
+                </div>
+                <div v-if="result.reason">原因/案例：{{result.reason}}</div>
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+  var result = '<%- JSON.stringify(result) %>';
+
+  result = JSON.parse(result);
+
+
+</script>
+
+<script type="text/javascript" src="/js/common/vue.js"></script>
+<script type="text/javascript" src="/js/common/promise.min.js"></script>
+<script type="text/javascript" src="/js/common/fetch.js"></script>
+<script type="text/javascript" src="/js/common/api.js"></script>
+<script type="text/javascript" src="/js/answer-all.js?v=<%=version%>"></script>
+</body>
+</html>

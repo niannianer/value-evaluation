@@ -61,7 +61,7 @@ var vm = new Vue({
 //          评分过低或过高 ，没写原因
           if (el.score < el.low_line || el.score > el.high_line) {
             if (!el.reason) {
-              submit = false;
+              //submit = false;
             }
 
           }

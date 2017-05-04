@@ -3,7 +3,12 @@
     padding: 10px 15px;
     overflow: auto;
 }
-
+.answer-account .selected{
+    height: 30px;
+}
+.answer-account .label{
+    line-height:30px;
+}
 .description {
     line-height: 24px;
 }

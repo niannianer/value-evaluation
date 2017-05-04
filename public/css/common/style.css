@@ -22,7 +22,7 @@ body {
     -webkit-touch-callout: none;
 }
 
-input, textarea {
+input, textarea ,select{
     -webkit-appearance: none;
     border: 1px solid #eee;
     outline: none;
