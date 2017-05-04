@@ -17,14 +17,24 @@
     </div>
     <div flex-box="1" class="answer-account">
         <div class="description">
-            以下为测评人对被测评人价值观对打分以及评价<br>
+            以下为测评人对被测评人价值观的打分以及评价<br>
             <b>被测评人：{{user_name}}</b>
         </div>
 
 
-        <div class="answer-list" v-for="(answer,index) in answer_list">
-            <div class="list-title">
-                <div>{{answer.name}}</div>
+        <div class="answer-list" v-for="(answer,index) in answer_list" :key="index">
+            <div class="list-title" flex="main:justify">
+                <div>测评人：{{answer.name}}</div>
+                <div>测评关系：{{answer.type|typeGrade}}</div>
+            </div>
+            <div class="list-content" v-for="(result,index_) in answer.result" :key="index_">
+                <div class="title">{{result.title}}</div>
+                <div>得分：
+                    <span class="score"
+                          :class="{'high':result.score>result.high_line,'low':result.score<result.low_line}">{{result.score}}</span>
+                </div>
+                <div v-if="result.reason">原因/案例：{{result.reason}}</div>
+
             </div>
 
         </div>

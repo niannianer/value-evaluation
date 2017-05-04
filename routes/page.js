@@ -94,7 +94,8 @@ router.get('/answer/:account', (req, res, next) => {
   let {account} = req.params;
   let sesstion = req.session;
   let {user} = sesstion;
-  if (user.type == 2) {
+//  permission deny
+  if (user.type != 2) {
     return res.render('error', {msg: 'permission deny'});
   }
   let result = {};

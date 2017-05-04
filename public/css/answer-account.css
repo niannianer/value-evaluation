@@ -11,8 +11,28 @@
 .answer-list {
     position: relative;
     margin-top: 15px;
-
+    background-color: #fff;
+    padding: 10px;
 }
 .list-title{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
 
+}
+.list-content{
+    margin-top: 10px;
+
+}
+.list-content .title{
+    font-size: 16px;
+    font-weight: 500;
+}
+.list-content .score{
+    font-weight: normal;
+}
+.score.high{
+    color: greenyellow;
+}
+.score.low{
+    color: #ff6500;
 }
