@@ -1,0 +1,18 @@
+.answer-account {
+    position: relative;
+    padding: 10px 15px;
+    overflow: auto;
+}
+
+.description {
+    line-height: 24px;
+}
+
+.answer-list {
+    position: relative;
+    margin-top: 15px;
+
+}
+.list-title{
+
+}

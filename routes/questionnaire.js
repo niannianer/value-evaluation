@@ -31,18 +31,26 @@ router.get('/:answer_to', (req, res, next) => {
           .where({answer_by, answer_to})
           .then(data => {
             let result = data[0] || {};
-            result.result = JSON.parse(result.result)
-            res.send({
-              code: 200,
-              msg: 'ok',
-              data: result
-            })
+            if (data.length) {
+              result.result = JSON.parse(result.result);
+              res.send({
+                code: 200,
+                msg: 'ok',
+                data: result
+              })
+            }else {
+              res.send({
+                code: 0,
+                msg: 'empty'
+              })
+            }
+
           })
           .catch(err => {
             res.status(500);
             res.send({
               code: 500,
-              msg: err.message||'error'
+              msg: err.message || 'error'
 
             })
           });

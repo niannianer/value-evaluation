@@ -28,7 +28,7 @@ router.use((req, res, next) => {
   }
 
 });
-
+// get questionnaire by  account
 router.get('/questionnaire/:account/:sign', (req, res, next) => {
 
   let {account, sign} = req.params;
@@ -83,8 +83,43 @@ router.get('/questionnaire/:account/:sign', (req, res, next) => {
           });
 
 });
+// questionnaire-result
 router.get('/questionnaire-result', (req, res, next) => {
   res.render('questionnaire-result', {version});
+
+});
+
+// get answer by account
+router.get('/answer/:account', (req, res, next) => {
+  let {account} = req.params;
+  let sesstion = req.session;
+  let {user} = sesstion;
+  if (user.type == 2) {
+    return res.render('error', {msg: 'permission deny'});
+  }
+  let result = {};
+  knex('user')
+          .select()
+          .where({account})
+          .then(data => {
+            result.user = data[0];
+            let user_id = data[0].id;
+            return knex.select('answer.*','user.name')
+                    .from('answer')
+                    .innerJoin('user', 'answer.answer_by', 'user.id')
+                    .where('answer.answer_to', user_id)
+          })
+          .then(data => {
+            data.map(el => {
+              el.result = JSON.parse(el.result);
+            });
+            result.answer_list = data;
+            res.render('answer-account', {result, version});
+          })
+          .catch(err => {
+            return res.render('error', {msg: err.message || 'sql error'});
+          })
+
 
 });
 module.exports = router;

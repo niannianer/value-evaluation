@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>问卷答案</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1.0,maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/common/flex.css">
+    <link rel="stylesheet" href="/css/common/style.css">
+    <link rel="stylesheet" href="/css/answer-account.css?v=<%=version%>">
+</head>
+<body>
+<div class="warp" flex="dir:top" id="answer-account">
+    <div class="header" flex-box="0">
+        <h3>问卷答案</h3>
+    </div>
+    <div flex-box="1" class="answer-account">
+        <div class="description">
+            以下为测评人对被测评人价值观对打分以及评价<br>
+            <b>被测评人：{{user_name}}</b>
+        </div>
+
+
+        <div class="answer-list" v-for="(answer,index) in answer_list">
+            <div class="list-title">
+                <div>{{answer.name}}</div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+  var result = '<%- JSON.stringify(result) %>';
+
+  result = JSON.parse(result);
+
+
+</script>
+
+<script type="text/javascript" src="/js/common/vue.js"></script>
+<script type="text/javascript" src="/js/common/promise.min.js"></script>
+<script type="text/javascript" src="/js/common/fetch.js"></script>
+<script type="text/javascript" src="/js/common/api.js"></script>
+<script type="text/javascript" src="/js/answer-account.js?v=<%=version%>"></script>
+</body>
+</html>
