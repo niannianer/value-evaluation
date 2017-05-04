@@ -12,7 +12,7 @@ const checkSign = (account = '', sign = '') => {
   return setSign(account) === sign;
 };
 
-console.log(setSign('hetanhong'));
+console.log(setSign('liuliu'));
 
 
 module.exports = {

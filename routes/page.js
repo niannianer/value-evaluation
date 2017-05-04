@@ -34,7 +34,7 @@ router.get('/questionnaire/:account/:sign', (req, res, next) => {
   let {account, sign} = req.params;
   /*sign is error*/
   if (!checkSign(account, sign)) {
-    return res.send('sgin is error');
+    return res.render('error',{msg:'sgin is error'});
 
   }
   let result = {};
