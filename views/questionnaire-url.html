@@ -16,6 +16,7 @@
         <h3>问卷链接(全部)</h3>
     </div>
     <div flex-box="1" class="answer-account">
+        <div id="copy" style="width: 0px;height: 0px" data-clipboard-text=""></div>
         <div class="description">
             以下为测评人对应的问卷链接<br>
         </div>
@@ -26,10 +27,9 @@
                 <div class="action" flex-box="0">操作</div>
             </div>
             <div class="list-item" flex="" v-for="(item,index) in list">
-                <input type="hidden" :id="('l'+index)" v-model="item.url">
                 <div class="name" flex-box="0">{{item.name}}</div>
                 <div class="url" flex-box="1">{{item.url}}</div>
-                <div class="action copy" flex-box="0" :data-clipboard-text="item.url">复制</div>
+                <div class="action" flex-box="0" @click="copy(item.url)">复制</div>
             </div>
         </div>
 
