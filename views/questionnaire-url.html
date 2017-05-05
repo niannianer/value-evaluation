@@ -26,9 +26,9 @@
                 <div class="url" flex-box="1">链接</div>
                 <div class="action" flex-box="0">操作</div>
             </div>
-            <div class="list-item" v-for="(item,index) in list">
+            <div class="list-item" v-for="(item,index) in list" :class="{'border-top':!isDiff(index)}">
                 <div class="letter" v-if="isDiff(index)">{{item.account|upperCase}}</div>
-                <div flex class="content">
+                <div flex :class="{'content':isDiff(index)}">
                     <div class="name" flex-box="0">{{item.name}}</div>
                     <div class="url" flex-box="1">{{item.url}}</div>
                     <div class="action" flex-box="0" @click="copy(item.url)">复制</div>

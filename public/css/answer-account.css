@@ -3,12 +3,15 @@
     padding: 10px 15px;
     overflow: auto;
 }
-.answer-account .selected{
+
+.answer-account .selected {
     height: 30px;
 }
-.answer-account .label{
-    line-height:30px;
+
+.answer-account .label {
+    line-height: 30px;
 }
+
 .description {
     line-height: 24px;
 }
@@ -19,57 +22,74 @@
     background-color: #fff;
     padding: 10px;
 }
-.list-title{
+
+.list-title {
     padding-bottom: 10px;
     border-bottom: 1px solid #ddd;
 
 }
-.list-content{
+
+.list-content {
     margin-top: 10px;
 
 }
-.list-content .title{
+
+.list-content .title {
     font-size: 16px;
     font-weight: 500;
 }
-.list-content .score{
+
+.list-content .score {
     font-weight: normal;
 }
-.score.high{
+
+.score.high {
     color: greenyellow;
 }
-.score.low{
+
+.score.low {
     color: #ff6500;
 }
-.url-list{
+
+.url-list {
     position: relative;
     margin-top: 15px;
     background-color: #fff;
     padding: 10px;
 
 }
-.url-list .list-item{
+
+.url-list .list-item {
     padding: 10px 0;
-    border-bottom: 1px solid #ddd;
+
 }
-.url-list .list-item:last-child{
+
+.list-item.border-top {
+    border-top: 1px solid #ddd;
+}
+
+.url-list .list-item:last-child {
     border-bottom: none;
 }
-.url-list .name{
+
+.url-list .name {
     width: 80px;
 }
-.url-list .action{
+
+.url-list .action {
     text-align: right;
     width: 60px;
     color: #00beff;
 }
-.letter{
+
+.letter {
     background-color: #ddd;
     line-height: 30px;
     font-size: 16px;
     margin: 0 -10px;
     padding-left: 10px;
 }
-.content{
+
+.content {
     padding-top: 10px;
 }
