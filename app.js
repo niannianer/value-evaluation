@@ -11,6 +11,8 @@ var ejs = require('ejs');
 var routes = require('./routes/index');
 
 var app = express();
+app.set('redisErrorTime', 0);
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -20,11 +22,19 @@ app.use(logger('dev'));
 var store = new RedisStore({
   host: '127.0.0.1',
   port: 6379,
-  db: 0
-}, (err, response) => {
-  console.log(err, response)
-})
-
+  db: 0,
+  logErrors: (err) => {
+    console.log('--------->');
+    let redisErrorTime = app.get('redisErrorTime');
+    if (redisErrorTime > 5) {
+      console.error('redis connect error');
+      process.exit(1);
+    } else {
+      redisErrorTime++;
+      app.set('redisErrorTime', redisErrorTime)
+    }
+  }
+});
 // session a year;
 app.use(session({
   secret: 'abcdefg',
