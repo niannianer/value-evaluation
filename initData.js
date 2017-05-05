@@ -5,6 +5,7 @@
 const User = [{
   name: '庄洪宇',
   account: 'zhuanghongyu',
+  password:'mfzp123456',
   type: 2
 
 }, {
