@@ -6,7 +6,8 @@ var vm = new Vue({
   data: function () {
     return {
       list: result,
-      showToast: false
+      showToast: false,
+      toastText: ''
     }
 
 
@@ -17,7 +18,21 @@ var vm = new Vue({
     });
 
   },
+  filters: {
+    upperCase: function (letter) {
+      letter = letter || 'A';
+      return letter[0].toUpperCase();
+
+    }
+  },
   methods: {
+    isDiff: function (index) {
+      if (index == 0) {
+        return true;
+      }
+      return this.list[index].account[0] != this.list[index - 1].account[0];
+
+    },
     copy: function (text) {
       var dom = document.querySelector('#copy');
       dom.setAttribute('data-clipboard-text', text);
