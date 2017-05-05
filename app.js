@@ -15,15 +15,21 @@ var app = express();
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 
+
+// session store
+var store = new RedisStore({
+  host: '127.0.0.1',
+  port: 6379,
+  db: 0
+}, (err, response) => {
+  console.log(err, response)
+})
+
 // session a year;
 app.use(session({
   secret: 'abcdefg',
   name: 'mfSystem',
-  store: new RedisStore({
-    host: '127.0.0.1',
-    port: 6379,
-    db: 0
-  }),
+  store,
   cookie: {maxAge: 12 * 30 * 24 * 60 * 60 * 1000},
   resave: true,
   saveUninitialized: true
