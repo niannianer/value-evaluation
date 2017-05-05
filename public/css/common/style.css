@@ -22,7 +22,7 @@ body {
     -webkit-touch-callout: none;
 }
 
-input, textarea ,select{
+input, textarea, select {
     -webkit-appearance: none;
     border: 1px solid #eee;
     outline: none;
@@ -101,7 +101,8 @@ button {
     text-align: center;
     width: 100%;
 }
-.header .back{
+
+.header .back {
     position: absolute;
     top: 50%;
     left: 15px;
@@ -122,4 +123,22 @@ button {
     background-color: #00beff;
     color: #fff;
     text-align: center;
+}
+
+.toast {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background:rgba(0,0,0,.8);
+    border-radius: 20px;
+    padding: 15px 20px;
+    min-width: 150px;
+
+}
+
+.toast .text {
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
 }

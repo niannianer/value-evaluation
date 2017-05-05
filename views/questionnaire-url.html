@@ -35,6 +35,10 @@
 
 
     </div>
+    <div class="toast" v-show="showToast">
+        <div class="text">{{toastText}}</div>
+
+    </div>
 
 
 </div>
@@ -50,6 +54,7 @@
 
 <script type="text/javascript" src="/js/common/vue.js"></script>
 <script type="text/javascript" src="/js/common/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/common/utils.js"></script>
 <script type="text/javascript" src="/js/questionnaire-url.js?v=<%=version%>"></script>
 </body>
 </html>

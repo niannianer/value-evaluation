@@ -6,7 +6,9 @@ var vm = new Vue({
   data: function () {
     return {
       account: '',
-      password: ''
+      password: '',
+      hintInfo: '',
+      hint: false
     }
 
   },
@@ -19,9 +21,9 @@ var vm = new Vue({
         account: this.account,
         password: this.password
       };
+      var that = this;
       $api.post('/user/login', data)
               .then(function (res) {
-                console.log(res);
                 if (res.code == 200) {
                   if (res.redirectUrl) {
                     location.replace(res.redirectUrl);
@@ -33,6 +35,10 @@ var vm = new Vue({
                       location.href = '/questionnaire-url';
                     }
                   }
+                }
+                if (res.code == 1) {
+                  that.hintInfo = '用户名或密码错误';
+                  that.hint = true;
                 }
               })
 

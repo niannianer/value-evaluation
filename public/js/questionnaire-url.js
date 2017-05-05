@@ -6,7 +6,7 @@ var vm = new Vue({
   data: function () {
     return {
       list: result,
-      origin: location.origin
+      showToast: false
     }
 
 
@@ -26,20 +26,28 @@ var vm = new Vue({
     }
   },
   mounted: function () {
+    var that = this;
     var clipboard = new Clipboard('#copy');
     clipboard.on('success', function (e) {
       console.info('Action:', e.action);
       console.info('Text:', e.text);
       console.info('Trigger:', e.trigger);
-      alert('已复制成功')
-
+      that.showToast = true;
+      that.toastText = '已复制成功';
+      setTimeout(function () {
+        that.showToast = false;
+      }, 3000);
       e.clearSelection();
     });
 
     clipboard.on('error', function (e) {
       console.error('Action:', e.action);
       console.error('Trigger:', e.trigger);
-      alert('复制失败');
+      that.showToast = true;
+      that.toastText = '复制失败';
+      setTimeout(function () {
+        that.showToast = false;
+      }, 3000);
     });
 
   }

@@ -19,7 +19,7 @@
                 <label>用户名：</label>
             </div>
             <div class="input" flex-box="1">
-                <input name="account" type="text"  v-model="account">
+                <input name="account" type="text"  v-model.trim="account">
             </div>
         </div>
 
@@ -28,7 +28,15 @@
                 <label>密码：</label>
             </div>
             <div class="input" flex-box="1">
-                <input name="password" type="password"  v-model="password">
+                <input name="password" type="password"  v-model.trim="password">
+            </div>
+        </div>
+        <div flex>
+            <div class="label" flex-box="0">
+                <label></label>
+            </div>
+            <div style="color: #ff6500" v-show="hint">
+                {{hintInfo}}
             </div>
         </div>
         <div flex="main:center">
@@ -43,6 +51,6 @@
 <script type="text/javascript" src="/js/common/vue.js"></script>
 <script type="text/javascript" src="/js/common/promise.min.js"></script>
 <script type="text/javascript" src="/js/common/fetch.js"></script>
-<script type="text/javascript" src="/js/common/api.js"></script>
+<script type="text/javascript" src="/js/common/utils.js"></script>
 <script type="text/javascript" src="/js/login.js?v=<%=version%>"></script>
 </html>
