@@ -85,7 +85,7 @@
     <div class="footer" flex-box="0">
         <button class="btn-primary btn-submit"
                 @click.stop="submitAnswer()"
-                :disabled="!btn_submit">提交</button>
+                :disabled="!(btn_submit&&permission)">提交</button>
     </div>
 
 </div>

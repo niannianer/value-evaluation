@@ -9,6 +9,7 @@ var vm = new Vue({
       question_list: result.question_list,
       btn_submit: false,
       user_name: result.user.name,
+      permission:true,
       answer: {
         questionnaire_id: result.questionnaire.id,
         type: ''
@@ -27,6 +28,7 @@ var vm = new Vue({
                 that.question_list = data.data.result;
                 that.answer.type = data.data.type;
                 that.checkSubmit();
+                that.permission =false;
               }
             })
   },
