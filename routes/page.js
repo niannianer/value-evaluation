@@ -153,6 +153,7 @@ router.get('/questionnaire-url', (req, res, next) => {
   }
   knex('user')
           .select('id', 'name', 'account', 'type')
+          .orderBy('account')
           .then(data => {
             data.map(el => {
               el.sign = setSign(el.account);
