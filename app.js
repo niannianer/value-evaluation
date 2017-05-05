@@ -1,4 +1,5 @@
 var express = require('express');
+var fs = require('fs');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -7,15 +8,20 @@ var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var ejs = require('ejs');
 
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(path.join(__dirname, 'access-err.log'), {flags: 'a'})
 
-var routes = require('./routes/index');
 
 var app = express();
 app.set('redisErrorTime', 0);
 
-// uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(logger('dev'));
+app.use(logger('dev', {
+  stream: accessLogStream,
+  skip: (req, res) => {
+    return res.statusCode < 400;
+  }
+}));
 
 
 // session store
@@ -53,6 +59,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var routes = require('./routes/index');
 // init routes;
 routes.init(app);
 
