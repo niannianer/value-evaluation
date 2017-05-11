@@ -98,6 +98,7 @@ router.get('/answer-all', (req, res, next) => {
   }
   knex.distinct('user.id')
           .select('user.name', 'user.account')
+          .orderBy('user.account')
           .from('user')
           .innerJoin('answer', 'answer.answer_to', 'user.id')
           .then(data => {
